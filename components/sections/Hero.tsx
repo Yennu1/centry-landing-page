@@ -22,12 +22,11 @@ const fadeUp = {
 export default function Hero() {
   return (
     <section className="relative px-2">
-      {/* Hero container — no fixed height, content-driven with generous padding */}
+      {/* Hero container — taller than viewport so bloom extends below the fold */}
       <div className="hero-bg relative isolate w-full rounded-b-[1.5rem] overflow-hidden">
-        <HeroBloom />
 
-        {/* Content block — padded top for navbar clearance, padded bottom for bloom visibility */}
-        <div className="relative z-[2] w-full flex flex-col items-center text-center px-4 pt-40 pb-32 md:pt-48 md:pb-40">
+        {/* Content block — generous top padding clears the navbar fully */}
+        <div className="relative z-[2] w-full flex flex-col items-center text-center px-4 pt-52 md:pt-60 pb-[34rem] md:pb-[40rem]">
 
           {/* Headline */}
           <HeroHeadline />
@@ -60,6 +59,10 @@ export default function Hero() {
           </motion.div>
 
         </div>
+
+        {/* Bloom anchored to the very bottom — only top curve visible initially */}
+        <HeroBloom />
+
       </div>
     </section>
   );

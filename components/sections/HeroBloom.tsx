@@ -1,8 +1,8 @@
 export default function HeroBloom() {
   return (
-    <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden">
-      {/* ── Layered bloom glows positioned at the bottom-center, shifted down ── */}
-      <div className="absolute bottom-0 left-0 w-full h-full translate-y-[7rem]">
+    <div className="absolute inset-x-0 bottom-0 h-[60rem] md:h-[68rem] w-full pointer-events-none overflow-hidden">
+      {/* ── Layered bloom glows anchored to the bottom, only top curve visible above the fold ── */}
+      <div className="absolute bottom-0 left-0 w-full h-full">
         {/* Widest, softest navy base glow */}
         <svg
           className="absolute bottom-[-8rem] left-1/2 -translate-x-1/2 w-[140%] max-w-none pointer-events-none"

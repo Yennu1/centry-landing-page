@@ -9,14 +9,14 @@ export default function ProductPreview() {
   const items = [...PRODUCT_SCREENSHOTS, ...PRODUCT_SCREENSHOTS];
 
   return (
-    <section className="relative w-full pt-20 pb-20 md:pt-28 md:pb-24 overflow-hidden">
+    <section className="relative w-full pt-28 pb-24 md:pt-36 md:pb-28 overflow-hidden">
       {/* Section label — letter-spaced */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.6 }}
         transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-        className="flex justify-center mb-10 md:mb-16"
+        className="flex justify-center mb-16 md:mb-20"
       >
         <span className="text-[0.7rem] md:text-[0.8rem] font-semibold uppercase text-[#6B7499] [letter-spacing:0.4em] md:[letter-spacing:0.55em] pl-[0.4em] md:pl-[0.55em]">
           Product Preview

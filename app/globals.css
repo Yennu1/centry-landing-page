@@ -464,15 +464,8 @@ body {
 }
 
 /* ─────────────────────────────────────────
-   HERO BG — override for content-driven height
-   Bloom anchors to the bottom of the section
+   HERO BG — content-driven height
 ───────────────────────────────────────── */
 .hero-bg {
-  min-height: 100vh;
-}
-
-@media (max-width: 768px) {
-  .hero-bg {
-    min-height: 100svh;
-  }
+  min-height: auto;
 }

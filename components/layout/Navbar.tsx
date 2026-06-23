@@ -33,7 +33,7 @@ export default function Navbar() {
 
           {/* Nav links — centered with generous spacing */}
           <ul
-            className="flex items-center gap-1 lg:gap-2"
+            className="flex items-center gap-3 lg:gap-4"
             onMouseLeave={() => setHoveredLink(null)}
           >
             {NAV_LINKS.map((link) => (
@@ -69,10 +69,10 @@ export default function Navbar() {
 
           {/* CTAs */}
           <div className="flex items-center gap-2 shrink-0">
-            <Link href="#contact" className="btn-secondary text-sm px-4 py-2">
+            <Link href="#contact" className="btn-secondary text-[0.8rem] px-3.5 py-1.5">
               Sign In
             </Link>
-            <Link href="#contact" className="btn-primary text-sm px-4 py-2">
+            <Link href="#contact" className="btn-primary text-[0.8rem] px-3.5 py-1.5">
               Get Started
             </Link>
           </div>
