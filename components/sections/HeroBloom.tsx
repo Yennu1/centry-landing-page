@@ -1,6 +1,6 @@
 export default function HeroBloom() {
   return (
-    <div className="absolute inset-x-0 bottom-0 h-[60rem] md:h-[68rem] w-full pointer-events-none overflow-hidden">
+    <div className="absolute inset-x-0 w-full pointer-events-none overflow-hidden" style={{ top: "520px", bottom: 0 }}>
       {/* ── Layered bloom glows anchored to the bottom, only top curve visible above the fold ── */}
       <div className="absolute bottom-0 left-0 w-full h-full">
         {/* Widest, softest navy base glow */}
