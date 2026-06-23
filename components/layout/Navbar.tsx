@@ -69,7 +69,7 @@ export default function Navbar() {
 
           {/* CTAs */}
           <div className="flex items-center gap-2 shrink-0">
-            <Link href="#contact" className="btn-secondary text-[0.8rem] px-3.5 py-1.5">
+            <Link href="#features" className="btn-secondary text-[0.8rem] px-3.5 py-1.5">
               Sign In
             </Link>
             <Link href="#contact" className="btn-primary text-[0.8rem] px-3.5 py-1.5">

@@ -22,29 +22,26 @@ const fadeUp = {
 export default function Hero() {
   return (
     <section className="relative px-2">
-      {/* Hero container — taller than viewport so bloom extends below the fold */}
       <div className="hero-bg relative isolate w-full rounded-b-[1.5rem] overflow-hidden">
 
-        {/* Content block — generous top padding clears the navbar fully */}
-        <div className="relative z-[2] w-full flex flex-col items-center text-center px-4 pt-52 md:pt-60 pb-[34rem] md:pb-[40rem]">
+        {/* Headline + copy sit in the upper portion of the hero */}
+        <div className="relative z-[2] w-full flex flex-col items-center text-center px-4"
+          style={{ paddingTop: "200px", paddingBottom: "520px" }}>
 
-          {/* Headline */}
           <HeroHeadline />
 
-          {/* Description — 40px below headline */}
           <motion.p
             custom={0}
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            className="text-[0.92rem] md:text-[1.05rem] leading-relaxed max-w-[21rem] md:max-w-[30rem] text-center text-[#9CA3C4]"
+            className="text-[0.92rem] md:text-[1.05rem] leading-relaxed max-w-[21rem] md:max-w-[30rem] text-[#9CA3C4]"
             style={{ marginTop: "40px" }}
           >
             The all-in-one platform to manage members, attendance, finances,
             groups, and events — built for the modern church.
           </motion.p>
 
-          {/* CTA — 48px below description */}
           <motion.div
             custom={1}
             variants={fadeUp}
@@ -52,7 +49,7 @@ export default function Hero() {
             animate="visible"
             style={{ marginTop: "48px" }}
           >
-            <Link href="#contact" className="btn-primary text-sm px-8 py-3">
+            <Link href="#features" className="btn-primary text-sm px-8 py-3">
               Get Started
               <ArrowRight className="size-4" strokeWidth={2} />
             </Link>
@@ -60,7 +57,7 @@ export default function Hero() {
 
         </div>
 
-        {/* Bloom anchored to the very bottom — only top curve visible initially */}
+        {/* Bloom anchored to the very bottom */}
         <HeroBloom />
 
       </div>
