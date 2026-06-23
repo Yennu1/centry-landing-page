@@ -35,7 +35,7 @@ export default function Hero() {
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            className="text-[0.92rem] md:text-[1.05rem] leading-relaxed max-w-[21rem] md:max-w-[30rem] text-center mt-5 md:mt-6 text-[#9CA3C4]"
+            className="text-[0.92rem] md:text-[1.05rem] leading-relaxed max-w-[21rem] md:max-w-[30rem] text-center mt-10 md:mt-12 text-[#9CA3C4]"
           >
             The all-in-one platform to manage members, attendance, finances,
             groups, and events — built for the modern church.
@@ -46,7 +46,7 @@ export default function Hero() {
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            className="flex items-center gap-3 mt-14"
+            className="flex items-center gap-3 mt-10 md:mt-14"
           >
             <Link href="#contact" className="btn-primary text-sm px-8 py-3">
               Get Started
