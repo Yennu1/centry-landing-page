@@ -1,6 +1,6 @@
 import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/sections/Hero";
-import ProductPreview from "@/components/sections/ProductPreview";
+import Features from "@/components/sections/Features";
 
 export default function Home() {
   return (
@@ -10,11 +10,7 @@ export default function Home() {
         <div className="max-w-[1440px] mx-auto">
           <Hero />
         </div>
-
-        <ProductPreview />
-
-        {/* Sections below are built in upcoming increments */}
-        <div className="h-[30vh]" />
+        <Features />
       </main>
     </>
   );
