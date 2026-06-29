@@ -1,7 +1,6 @@
 "use client";
-import React, { useRef } from "react";
-import { useMotionValueEvent, useScroll } from "motion/react";
-import { motion, AnimatePresence } from "motion/react";
+import React, { useRef, useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export const StickyScroll = ({
@@ -15,25 +14,38 @@ export const StickyScroll = ({
   }[];
   contentClassName?: string;
 }) => {
-  const [activeCard, setActiveCard] = React.useState(0);
-  const ref = useRef<HTMLDivElement>(null);
+  const [activeCard, setActiveCard] = useState(0);
+  const sectionRef = useRef<HTMLDivElement>(null);
 
-  // Page scroll drives the transitions across the whole tall section
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end end"],
-  });
+  useEffect(() => {
+    const handleScroll = () => {
+      const section = sectionRef.current;
+      if (!section) return;
 
-  const cardLength = content.length;
+      const rect = section.getBoundingClientRect();
+      const sectionTop = -rect.top; // how many px we've scrolled into the section
+      const sectionHeight = rect.height; // total scroll runway
+      const scrollable = sectionHeight - window.innerHeight;
 
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    // Map scroll progress (0..1) to the active card index
-    const index = Math.min(
-      cardLength - 1,
-      Math.floor(latest * cardLength)
-    );
-    setActiveCard(index < 0 ? 0 : index);
-  });
+      if (scrollable <= 0) return;
+
+      // progress: 0 when section enters viewport, 1 when section ends
+      const progress = Math.max(0, Math.min(1, sectionTop / scrollable));
+
+      // Map progress to card index
+      const index = Math.min(
+        content.length - 1,
+        Math.floor(progress * content.length)
+      );
+
+      setActiveCard(index);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // run once on mount
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [content.length]);
 
   const backgroundColors = [
     "#080B14",
@@ -45,11 +57,13 @@ export const StickyScroll = ({
   ];
 
   return (
-    // Tall outer container — gives the sticky rectangle a long scroll runway
-    <div ref={ref} className="relative" style={{ height: `${content.length * 100}vh` }}>
-
-      {/* The rectangle pins to the viewport center and HOLDS while you scroll
-          through all features, only releasing at the end of the tall container. */}
+    // Tall section — each feature gets a full viewport of scroll runway
+    <div
+      ref={sectionRef}
+      style={{ height: `${content.length * 100}vh` }}
+      className="relative w-full"
+    >
+      {/* Sticky wrapper — fills the viewport and PINS until section ends */}
       <div className="sticky top-0 h-screen w-full flex items-center justify-center">
         <motion.div
           animate={{ backgroundColor: backgroundColors[activeCard] }}
@@ -59,12 +73,12 @@ export const StickyScroll = ({
         >
           <div className="flex h-full">
 
-            {/* LEFT — feature text, with 32px inner breathing space */}
+            {/* LEFT — text, 32px inner breathing space from divider */}
             <div
               className="flex flex-col justify-center w-[44%] shrink-0 border-r border-white/[0.06]"
-              style={{ padding: "48px 56px", paddingRight: "32px" }}
+              style={{ padding: "48px 32px 48px 52px" }}
             >
-              {/* Step indicator dots (no 01/06 text) */}
+              {/* Dot indicators — no 01/06 counter */}
               <div className="flex gap-1.5 mb-7">
                 {content.map((_, i) => (
                   <motion.div
@@ -85,7 +99,7 @@ export const StickyScroll = ({
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -16 }}
-                  transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
                 >
                   <h3
                     className="text-[1.5rem] md:text-[1.75rem] font-semibold text-[#EEF0FF] leading-[1.2] mb-5"
@@ -100,8 +114,11 @@ export const StickyScroll = ({
               </AnimatePresence>
             </div>
 
-            {/* RIGHT — screenshot, fully contained */}
-            <div className="flex-1 relative overflow-hidden flex items-center justify-center" style={{ padding: "24px" }}>
+            {/* RIGHT — screenshot, fully clipped inside rounded panel */}
+            <div
+              className="flex-1 overflow-hidden flex items-center justify-center"
+              style={{ padding: "20px" }}
+            >
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeCard}
@@ -121,7 +138,7 @@ export const StickyScroll = ({
 
           </div>
 
-          {/* Bottom progress bar */}
+          {/* Progress bar at bottom */}
           <motion.div
             className="absolute bottom-0 left-0 h-[2px] bg-[#4F6BED]"
             animate={{ width: `${((activeCard + 1) / content.length) * 100}%` }}
