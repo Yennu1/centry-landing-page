@@ -137,13 +137,6 @@ export const StickyScroll = ({
             </div>
 
           </div>
-
-          {/* Progress bar at bottom */}
-          <motion.div
-            className="absolute bottom-0 left-0 h-[2px] bg-[#4F6BED]"
-            animate={{ width: `${((activeCard + 1) / content.length) * 100}%` }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
-          />
         </motion.div>
       </div>
     </div>
