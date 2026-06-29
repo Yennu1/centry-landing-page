@@ -108,7 +108,7 @@ export default function Features() {
       {/* 250px space above + heading */}
       <div
         className="flex flex-col items-center text-center px-6"
-        style={{ paddingTop: "10px", paddingBottom: "64px" }}
+        style={{ paddingTop: "0px", paddingBottom: "64px" }}
       >
         <p className="text-[0.7rem] font-semibold tracking-[0.42em] text-[#4F6BED] uppercase mb-4">
           Features
