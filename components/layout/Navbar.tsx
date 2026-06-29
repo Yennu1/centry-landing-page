@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import CentryLogo from "@/components/ui/CentryLogo";
 import StaggeredMenu, { StaggeredMenuItem } from "@/components/ui/StaggeredMenu";
 import { NAV_LINKS } from "@/lib/constants";
