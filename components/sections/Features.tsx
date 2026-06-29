@@ -104,7 +104,7 @@ const featureContent = [
 
 export default function Features() {
   return (
-    <section id="features" className="w-full bg-[#080B14]">
+    <section id="features" className="w-full bg-[#080B14] relative z-10">
       {/* 250px space above + heading */}
       <div
         className="flex flex-col items-center text-center px-6"
