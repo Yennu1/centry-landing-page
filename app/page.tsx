@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="relative overflow-x-hidden bg-[#080B14]">
+      <main className="relative bg-[#080B14]">
         <div className="max-w-[1440px] mx-auto">
           <Hero />
         </div>
