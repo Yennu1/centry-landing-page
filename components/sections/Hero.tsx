@@ -26,7 +26,7 @@ export default function Hero() {
 
         {/* Headline + copy sit in the upper portion of the hero */}
         <div className="relative z-[2] w-full flex flex-col items-center text-center px-4"
-          style={{ paddingTop: "200px", paddingBottom: "120px" }}>
+          style={{ paddingTop: "200px", paddingBottom: "300px" }}>
 
           <HeroHeadline />
 
