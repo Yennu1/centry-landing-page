@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import { useMotionValueEvent, useScroll } from "motion/react";
 import { motion, AnimatePresence } from "motion/react";
 import { cn } from "@/lib/utils";
@@ -16,9 +16,9 @@ export const StickyScroll = ({
   contentClassName?: string;
 }) => {
   const [activeCard, setActiveCard] = React.useState(0);
-  const ref = useRef<any>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
-  // target: ref means PAGE scroll drives transitions — no internal scrollbar
+  // Page scroll drives the transitions across the whole tall section
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end end"],
@@ -27,59 +27,54 @@ export const StickyScroll = ({
   const cardLength = content.length;
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    const cardsBreakpoints = content.map((_, index) => index / cardLength);
-    const closestBreakpointIndex = cardsBreakpoints.reduce(
-      (acc, breakpoint, index) => {
-        const distance = Math.abs(latest - breakpoint);
-        if (distance < Math.abs(latest - cardsBreakpoints[acc])) {
-          return index;
-        }
-        return acc;
-      },
-      0
+    // Map scroll progress (0..1) to the active card index
+    const index = Math.min(
+      cardLength - 1,
+      Math.floor(latest * cardLength)
     );
-    setActiveCard(closestBreakpointIndex);
+    setActiveCard(index < 0 ? 0 : index);
   });
 
-  // Centry palette — cycling dark backgrounds
   const backgroundColors = [
     "#080B14",
     "#0B0F1E",
     "#080D18",
     "#0A0C1A",
-    "#080B14",
+    "#090C17",
     "#0B0F1E",
   ];
 
   return (
-    // Tall scroll container — each feature gets 100vh of scroll real estate
+    // Tall outer container — gives the sticky rectangle a long scroll runway
     <div ref={ref} className="relative" style={{ height: `${content.length * 100}vh` }}>
 
-      {/* Sticky rectangle — stays on screen while user scrolls */}
-      <div className="sticky top-0 flex items-center justify-center w-full" style={{ height: "100vh" }}>
+      {/* The rectangle pins to the viewport center and HOLDS while you scroll
+          through all features, only releasing at the end of the tall container. */}
+      <div className="sticky top-0 h-screen w-full flex items-center justify-center">
         <motion.div
           animate={{ backgroundColor: backgroundColors[activeCard] }}
           transition={{ duration: 0.6, ease: "easeInOut" }}
           className="relative w-full max-w-[1000px] mx-6 rounded-3xl border border-white/[0.08] shadow-[0_32px_80px_rgba(0,0,0,0.6)] overflow-hidden"
           style={{ height: "560px" }}
         >
-          {/* Inner layout — left: text, right: image */}
           <div className="flex h-full">
 
-            {/* LEFT — feature text */}
-            <div className="flex flex-col justify-center px-12 md:px-16 w-[44%] shrink-0 border-r border-white/[0.06]">
-              {/* Step indicator */}
-              <div className="flex gap-1.5 mb-8">
+            {/* LEFT — feature text, with 32px inner breathing space */}
+            <div
+              className="flex flex-col justify-center w-[44%] shrink-0 border-r border-white/[0.06]"
+              style={{ padding: "48px 56px", paddingRight: "32px" }}
+            >
+              {/* Step indicator dots (no 01/06 text) */}
+              <div className="flex gap-1.5 mb-7">
                 {content.map((_, i) => (
                   <motion.div
                     key={i}
                     animate={{
                       width: activeCard === i ? "1.75rem" : "0.375rem",
                       opacity: activeCard === i ? 1 : 0.25,
-                      backgroundColor: activeCard === i ? "#4F6BED" : "#4F6BED",
                     }}
                     transition={{ duration: 0.3 }}
-                    className="h-[3px] rounded-full"
+                    className="h-[3px] rounded-full bg-[#4F6BED]"
                   />
                 ))}
               </div>
@@ -92,20 +87,12 @@ export const StickyScroll = ({
                   exit={{ opacity: 0, y: -16 }}
                   transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
                 >
-                  {/* Feature count */}
-                  <p className="text-[0.68rem] font-semibold tracking-[0.35em] text-[#4F6BED] uppercase mb-4">
-                    {String(activeCard + 1).padStart(2, "0")} / {String(content.length).padStart(2, "0")}
-                  </p>
-
-                  {/* Title */}
                   <h3
                     className="text-[1.5rem] md:text-[1.75rem] font-semibold text-[#EEF0FF] leading-[1.2] mb-5"
                     style={{ fontFamily: "'Montserrat', sans-serif" }}
                   >
                     {content[activeCard].title}
                   </h3>
-
-                  {/* Description */}
                   <p className="text-[0.875rem] leading-[1.8] text-[#8B92B0]">
                     {content[activeCard].description}
                   </p>
@@ -113,8 +100,8 @@ export const StickyScroll = ({
               </AnimatePresence>
             </div>
 
-            {/* RIGHT — screenshot */}
-            <div className="flex-1 relative overflow-hidden flex items-center justify-center p-6">
+            {/* RIGHT — screenshot, fully contained */}
+            <div className="flex-1 relative overflow-hidden flex items-center justify-center" style={{ padding: "24px" }}>
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeCard}

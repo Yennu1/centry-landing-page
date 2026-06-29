@@ -9,7 +9,7 @@ const featureContent = [
     description:
       "A complete, searchable directory of every person in your congregation. Track personal details, contact information, membership status, and church history — all in one place. Member profiles auto-generate a unique ID the moment a person is added.",
     content: (
-      <div className="relative w-full h-full min-h-[280px]">
+      <div className="relative w-full h-full">
         <Image
           src="/images/screenshots/feature-members.png"
           alt="Member Management"
@@ -25,7 +25,7 @@ const featureContent = [
     description:
       "Every donation generates a detailed transaction record with a printable giving receipt. Finance officers can review, edit, and export transaction history to CSV or Excel — and the live receipt preview updates as you type.",
     content: (
-      <div className="relative w-full h-full min-h-[280px]">
+      <div className="relative w-full h-full">
         <Image
           src="/images/screenshots/feature-transactions.png"
           alt="Transaction Records"
@@ -41,7 +41,7 @@ const featureContent = [
     description:
       "Record tithes, offerings, building fund contributions, and more in seconds. Support for Cash, Mobile Money (MTN, Vodafone, AirtelTigo), bank transfers, and cheques — built for how Ghanaian churches actually operate.",
     content: (
-      <div className="relative w-full h-full min-h-[280px]">
+      <div className="relative w-full h-full">
         <Image
           src="/images/screenshots/feature-donations.png"
           alt="Donations and Giving"
@@ -57,7 +57,7 @@ const featureContent = [
     description:
       "Let members commit to giving goals over time. Pledges display a real-time progress bar showing how much has been fulfilled, helping your finance team follow up confidently and celebrate milestones as they're reached.",
     content: (
-      <div className="relative w-full h-full min-h-[280px]">
+      <div className="relative w-full h-full">
         <Image
           src="/images/screenshots/feature-pledges.png"
           alt="Pledge Tracking"
@@ -73,7 +73,7 @@ const featureContent = [
     description:
       "Schedule every service and event your church runs — Sunday services, midweek meetings, prayer nights, outreaches, and more. Set recurring events once and let the system generate the full calendar automatically for the season ahead.",
     content: (
-      <div className="relative w-full h-full min-h-[280px]">
+      <div className="relative w-full h-full">
         <Image
           src="/images/screenshots/feature-events.png"
           alt="Events and Services"
@@ -89,7 +89,7 @@ const featureContent = [
     description:
       "Every church organisation runs in its own secure environment with Role Level Security enforced on all 18 database tables. Admins, pastors, finance officers, and group leaders each see only what their role permits — your data never bleeds across organisations.",
     content: (
-      <div className="relative w-full h-full min-h-[280px]">
+      <div className="relative w-full h-full">
         <Image
           src="/images/screenshots/feature-multitenant.png"
           alt="Secure Multi-Tenant"
