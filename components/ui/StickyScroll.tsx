@@ -102,7 +102,7 @@ export const StickyScroll = ({
                   transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
                 >
                   <h3
-                    className="text-[1.5rem] md:text-[1.75rem] font-semibold text-[#EEF0FF] leading-[1.2] mb-5"
+                    className="text-[1.5rem] md:text-[1.75rem] font-semibold text-[#EEF0FF] leading-[1.2] mb-7"
                     style={{ fontFamily: "'Montserrat', sans-serif" }}
                   >
                     {content[activeCard].title}
