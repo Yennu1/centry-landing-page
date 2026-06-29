@@ -22,11 +22,11 @@ const fadeUp = {
 export default function Hero() {
   return (
     <section className="relative px-2">
-      <div className="hero-bg relative isolate w-full rounded-b-[1.5rem] overflow-hidden">
+      <div className="hero-bg relative isolate w-full rounded-b-[1.5rem] overflow-hidden" style={{ maxHeight: "100vh" }}>
 
         {/* Headline + copy sit in the upper portion of the hero */}
         <div className="relative z-[2] w-full flex flex-col items-center text-center px-4"
-          style={{ paddingTop: "200px", paddingBottom: "500px" }}>
+          style={{ paddingTop: "200px", paddingBottom: "520px" }}>
 
           <HeroHeadline />
 
