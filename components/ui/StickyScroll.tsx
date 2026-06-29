@@ -79,7 +79,7 @@ export const StickyScroll = ({
               style={{ padding: "48px 32px 48px 52px" }}
             >
               {/* Dot indicators — no 01/06 counter */}
-              <div className="flex gap-1.5 mb-7">
+              <div className="flex gap-1.5" style={{ marginBottom: "28px", marginTop: "20px" }}>
                 {content.map((_, i) => (
                   <motion.div
                     key={i}
