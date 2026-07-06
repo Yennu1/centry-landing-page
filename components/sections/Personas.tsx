@@ -1,68 +1,71 @@
 "use client";
 
+import { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Church, Calculator, ClipboardList, Users } from "lucide-react";
 
 const PERSONAS = [
   {
-    icon: Church,
+    numeral: "I",
     role: "Pastors & General Overseers",
     description:
       "See the health of your entire church at a glance — attendance, giving, and growth — without chasing anyone for reports. Lead with clarity, not guesswork.",
   },
   {
-    icon: Calculator,
+    numeral: "II",
     role: "Financial Secretaries",
     description:
       "Record every cedi in seconds, print receipts instantly, and export clean statements for audits. No more reconciling notebooks at midnight.",
   },
   {
-    icon: ClipboardList,
+    numeral: "III",
     role: "Administrators",
     description:
       "Manage members, branches, events, and categories from one dashboard. Everything your office runs on paper today, organised and searchable forever.",
   },
   {
-    icon: Users,
+    numeral: "IV",
     role: "Ministry Leaders",
     description:
       "Track your group's attendance, plan meetings, and keep your members connected — with access scoped to exactly what your ministry needs.",
   },
 ];
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, delay: i * 0.1, ease: [0.25, 0.46, 0.45, 0.94] as const },
-  }),
-};
-
 export default function Personas() {
-  return (
-    <section className="relative w-full bg-[#080B14] overflow-hidden" style={{ padding: "140px 24px" }}>
-      {/* Ambient drifting bloom */}
-      <motion.div
-        aria-hidden
-        animate={{ x: ["-10%", "6%", "-10%"], opacity: [0.25, 0.45, 0.25] }}
-        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-        className="pointer-events-none absolute -top-40 left-1/2 h-[30rem] w-[60rem] -translate-x-1/2 rounded-full"
-        style={{
-          background:
-            "radial-gradient(ellipse 50% 50% at 50% 50%, rgba(79,107,237,0.14), transparent 70%)",
-        }}
-      />
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
 
-      <div className="relative max-w-[1100px] mx-auto px-6 md:px-10">
-        {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
+  useEffect(() => {
+    const section = sectionRef.current;
+    const track = trackRef.current;
+    if (!section || !track) return;
+
+    const handleScroll = () => {
+      const rect = section.getBoundingClientRect();
+      const sectionTop = -rect.top;
+      const scrollable = rect.height - window.innerHeight;
+      if (scrollable <= 0) return;
+
+      const progress = Math.max(0, Math.min(1, sectionTop / scrollable));
+      const maxTranslate = track.scrollWidth - window.innerWidth;
+      track.style.transform = `translateX(-${progress * maxTranslate}px)`;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <section
+      ref={sectionRef}
+      className="relative w-full bg-[#080B14]"
+      style={{ height: "300vh" }}
+    >
+      {/* Sticky container — pins to viewport while cards scroll horizontally */}
+      <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-center">
+
+        {/* Section header */}
+        <div className="text-center px-6 mb-12">
           <p className="text-[0.7rem] font-semibold tracking-[0.42em] text-[#4F6BED] uppercase mb-4">
             Made for you
           </p>
@@ -70,39 +73,54 @@ export default function Personas() {
             className="text-[2rem] md:text-[2.75rem] leading-[1.12] text-[#EEF0FF]"
             style={{ fontFamily: "'Instrument Serif', serif", fontWeight: 400 }}
           >
-            Who Centry was made for?
+            Who Centry was made for
           </h2>
-        </motion.div>
+        </div>
 
-        {/* Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {PERSONAS.map((p, i) => {
-            const Icon = p.icon;
-            return (
-              <motion.div
+        {/* Edge fades */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-24 md:w-40 z-10 bg-gradient-to-r from-[#080B14] to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-24 md:w-40 z-10 bg-gradient-to-l from-[#080B14] to-transparent" />
+
+        {/* Horizontal scrolling track */}
+        <div className="w-full overflow-visible">
+          <div
+            ref={trackRef}
+            className="flex gap-6 md:gap-8 will-change-transform px-8 md:px-16"
+            style={{ width: "max-content" }}
+          >
+            {PERSONAS.map((p, i) => (
+              <div
                 key={p.role}
-                custom={i}
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.3 }}
-                className="group relative rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-xl p-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_16px_48px_rgba(0,0,0,0.45)] transition-colors duration-300 hover:border-[#4F6BED]/40"
+                className="relative isolate shrink-0 w-[18rem] md:w-[24rem] h-[14rem] md:h-[15rem] rounded-[1.25rem] p-5 md:p-7 border border-[#4F6BED]/20 bg-[#4F6BED]/[0.04] overflow-hidden"
               >
-                <div className="mb-6 inline-flex size-11 items-center justify-center rounded-xl bg-[#4F6BED]/12 border border-[#4F6BED]/25">
-                  <Icon className="size-5 text-[#7B93F5]" strokeWidth={1.75} />
+                {/* Card content — above gradient */}
+                <div className="relative z-10 h-full w-full flex flex-col justify-between">
+                  {/* Persona tag at top */}
+                  <div className="w-fit flex items-center gap-2 px-4 py-2 rounded-full text-[0.82rem] bg-[#4F6BED]/[0.08] border border-[#4F6BED]/25">
+                    <span className="text-[#7B93F5] font-medium">{p.role}</span>
+                  </div>
+
+                  {/* Description at bottom */}
+                  <p className="text-[0.88rem] md:text-[0.92rem] leading-[1.45] text-[#C0C7E0]">
+                    {p.description}
+                  </p>
                 </div>
-                <h3
-                  className="text-[1.05rem] font-semibold text-[#EEF0FF] leading-snug mb-3"
-                  style={{ fontFamily: "'Montserrat', sans-serif" }}
-                >
-                  {p.role}
-                </h3>
-                <p className="text-[0.82rem] leading-[1.75] text-[#8B92B0]">
-                  {p.description}
-                </p>
-              </motion.div>
-            );
-          })}
+
+                {/* Large faded roman numeral — behind content */}
+                <div className="absolute -top-4 md:-top-5 right-3 md:right-4 -z-[2]">
+                  <span
+                    className="block text-[12rem] md:text-[14rem] font-bold leading-none text-[#EEF0FF]/[0.04] select-none"
+                    style={{ fontFamily: "'Montserrat', sans-serif", letterSpacing: "-0.04em" }}
+                  >
+                    {p.numeral}
+                  </span>
+                </div>
+
+                {/* Gradient fade from bottom — covers lower part of numeral */}
+                <div className="absolute inset-0 -z-[1] bg-gradient-to-t from-[#080B14] from-[25%] to-transparent to-[100%]" />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
