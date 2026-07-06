@@ -68,15 +68,15 @@ export const StickyScroll = ({
         <motion.div
           animate={{ backgroundColor: backgroundColors[activeCard] }}
           transition={{ duration: 0.6, ease: "easeInOut" }}
-          className="relative w-full max-w-[1000px] mx-6 rounded-3xl border border-white/[0.08] shadow-[0_32px_80px_rgba(0,0,0,0.6)] overflow-hidden"
-          style={{ height: "560px" }}
+          className="relative w-full max-w-[840px] mx-6 rounded-3xl border border-white/[0.08] shadow-[0_32px_80px_rgba(0,0,0,0.6)] overflow-hidden"
+          style={{ height: "460px" }}
         >
           <div className="flex h-full">
 
             {/* LEFT — text, 32px inner breathing space from divider */}
             <div
               className="flex flex-col justify-center w-[44%] shrink-0 border-r border-white/[0.06]"
-              style={{ padding: "48px 32px 48px 52px" }}
+              style={{ padding: "36px 24px 36px 40px" }}
             >
               {/* Dot indicators — no 01/06 counter */}
               <div className="flex gap-1.5" style={{ marginBottom: "28px", marginTop: "20px" }}>
@@ -102,12 +102,12 @@ export const StickyScroll = ({
                   transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
                 >
                   <h3
-                    className="text-[1.5rem] md:text-[1.75rem] font-semibold text-[#EEF0FF] leading-[1.2]"
+                    className="text-[1.1rem] md:text-[1.25rem] font-semibold text-[#EEF0FF] leading-[1.2]"
                     style={{ fontFamily: "'Montserrat', sans-serif", marginBottom: "40px" }}
                   >
                     {content[activeCard].title}
                   </h3>
-                  <p className="text-[0.875rem] leading-[1.8] text-[#8B92B0]">
+                  <p className="text-[0.78rem] leading-[1.7] text-[#8B92B0]">
                     {content[activeCard].description}
                   </p>
                 </motion.div>
@@ -117,7 +117,7 @@ export const StickyScroll = ({
             {/* RIGHT — screenshot, fully clipped inside rounded panel */}
             <div
               className="flex-1 overflow-hidden flex items-center justify-center"
-              style={{ padding: "20px" }}
+              style={{ padding: "14px" }}
             >
               <AnimatePresence mode="wait">
                 <motion.div
