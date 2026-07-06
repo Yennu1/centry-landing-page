@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Plus } from "lucide-react";
 
 const FAQS = [
@@ -36,7 +36,7 @@ export default function FAQ() {
 
   return (
     <section id="faq" className="relative w-full bg-[#080B14]" style={{ padding: "140px 24px" }}>
-      <div className="max-w-[760px] mx-auto">
+      <div className="max-w-[760px] mx-auto px-6">
         {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

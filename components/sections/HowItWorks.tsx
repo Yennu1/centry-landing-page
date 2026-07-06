@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { LogIn, UserPlus, Coins, FileDown, TrendingUp } from "lucide-react";
 
 const STEPS = [
@@ -46,7 +46,7 @@ export default function HowItWorks() {
         }}
       />
 
-      <div className="relative max-w-[820px] mx-auto">
+      <div className="relative max-w-[820px] mx-auto px-6 md:px-10">
         {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

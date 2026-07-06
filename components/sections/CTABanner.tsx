@@ -1,13 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
 export default function CTABanner() {
   return (
     <section className="relative w-full bg-[#080B14]" style={{ padding: "100px 24px 140px" }}>
-      <div className="max-w-[900px] mx-auto">
+      <div className="max-w-[900px] mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { Church, Calculator, ClipboardList, Users } from "lucide-react";
 
 const PERSONAS = [
@@ -54,7 +54,7 @@ export default function Personas() {
         }}
       />
 
-      <div className="relative max-w-[1100px] mx-auto">
+      <div className="relative max-w-[1100px] mx-auto px-6 md:px-10">
         {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

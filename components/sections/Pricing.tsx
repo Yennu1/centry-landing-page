@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { Check, ArrowRight } from "lucide-react";
 
 const TIERS = [
@@ -94,7 +94,7 @@ export default function Pricing() {
         }}
       />
 
-      <div className="relative max-w-[1160px] mx-auto">
+      <div className="relative max-w-[1160px] mx-auto px-6 md:px-10">
         {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
