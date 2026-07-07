@@ -1,6 +1,5 @@
 "use client";
 
-import { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 
 const PERSONAS = [
@@ -30,42 +29,36 @@ const PERSONAS = [
   },
 ];
 
+// Pewbeam-style stagger reveal — smooth, seamless
+const cardVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      delay: i * 0.12,
+      ease: [0.25, 0.46, 0.45, 0.94] as const,
+    },
+  }),
+};
+
 export default function Personas() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    const track = trackRef.current;
-    if (!section || !track) return;
-
-    const handleScroll = () => {
-      const rect = section.getBoundingClientRect();
-      const sectionTop = -rect.top;
-      const scrollable = rect.height - window.innerHeight;
-      if (scrollable <= 0) return;
-
-      const progress = Math.max(0, Math.min(1, sectionTop / scrollable));
-      const maxTranslate = track.scrollWidth - window.innerWidth;
-      track.style.transform = `translateX(-${progress * maxTranslate}px)`;
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
     <section
-      ref={sectionRef}
       className="relative w-full bg-[#080B14]"
-      style={{ height: "300vh" }}
+      style={{ marginTop: "-120px", padding: "80px 24px 140px" }}
     >
-      {/* Sticky container — pins to viewport while cards scroll horizontally */}
-      <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-center">
-
+      <div className="max-w-[1100px] mx-auto">
         {/* Section header */}
-        <div className="text-center px-6 mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.6 }}
+          className="text-center"
+          style={{ marginBottom: "96px" }}
+        >
           <p className="text-[0.7rem] font-semibold tracking-[0.42em] text-[#4F6BED] uppercase mb-4">
             Made for you
           </p>
@@ -75,52 +68,47 @@ export default function Personas() {
           >
             Who Centry was made for
           </h2>
-        </div>
+        </motion.div>
 
-        {/* Edge fades */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-24 md:w-40 z-10 bg-gradient-to-r from-[#080B14] to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-24 md:w-40 z-10 bg-gradient-to-l from-[#080B14] to-transparent" />
-
-        {/* Horizontal scrolling track */}
-        <div className="w-full overflow-visible">
-          <div
-            ref={trackRef}
-            className="flex gap-6 md:gap-8 will-change-transform px-8 md:px-16"
-            style={{ width: "max-content" }}
-          >
-            {PERSONAS.map((p, i) => (
-              <div
-                key={p.role}
-                className="relative isolate shrink-0 w-[18rem] md:w-[24rem] h-[14rem] md:h-[15rem] rounded-[1.25rem] p-5 md:p-7 border border-[#4F6BED]/20 bg-[#4F6BED]/[0.04] overflow-hidden"
-              >
-                {/* Card content — above gradient */}
-                <div className="relative z-10 h-full w-full flex flex-col justify-between">
-                  {/* Persona tag at top */}
-                  <div className="w-fit flex items-center gap-2 px-4 py-2 rounded-full text-[0.82rem] bg-[#4F6BED]/[0.08] border border-[#4F6BED]/25">
-                    <span className="text-[#7B93F5] font-medium">{p.role}</span>
-                  </div>
-
-                  {/* Description at bottom */}
-                  <p className="text-[0.88rem] md:text-[0.92rem] leading-[1.45] text-[#C0C7E0]">
-                    {p.description}
-                  </p>
+        {/* 2x2 grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-7">
+          {PERSONAS.map((p, i) => (
+            <motion.div
+              key={p.role}
+              custom={i}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              className="relative isolate w-full h-[15rem] md:h-[16rem] rounded-[1.25rem] p-6 md:p-7 border border-[#4F6BED]/20 bg-[#4F6BED]/[0.04] overflow-hidden"
+            >
+              {/* Content — above gradient */}
+              <div className="relative z-10 h-full w-full flex flex-col justify-between">
+                {/* Tag at top-left */}
+                <div className="w-fit flex items-center gap-2 px-4 py-2 rounded-full text-[0.82rem] bg-[#4F6BED]/[0.08] border border-[#4F6BED]/25">
+                  <span className="text-[#7B93F5] font-medium">{p.role}</span>
                 </div>
 
-                {/* Large faded roman numeral — behind content */}
-                <div className="absolute -top-4 md:-top-5 right-3 md:right-4 -z-[2]">
-                  <span
-                    className="block text-[12rem] md:text-[14rem] font-bold leading-none text-[#EEF0FF]/[0.04] select-none"
-                    style={{ fontFamily: "'Montserrat', sans-serif", letterSpacing: "-0.04em" }}
-                  >
-                    {p.numeral}
-                  </span>
-                </div>
-
-                {/* Gradient fade from bottom — covers lower part of numeral */}
-                <div className="absolute inset-0 -z-[1] bg-gradient-to-t from-[#080B14] from-[25%] to-transparent to-[100%]" />
+                {/* Description at bottom */}
+                <p className="text-[0.92rem] md:text-[0.98rem] leading-[1.5] text-[#C0C7E0] max-w-[26rem]">
+                  {p.description}
+                </p>
               </div>
-            ))}
-          </div>
+
+              {/* Bold roman numeral — top-right, more visible */}
+              <div className="absolute -top-4 md:-top-6 right-2 md:right-4 -z-[2]">
+                <span
+                  className="block text-[10rem] md:text-[13rem] font-bold leading-none text-[#EEF0FF]/[0.10] select-none"
+                  style={{ fontFamily: "'Montserrat', sans-serif", letterSpacing: "-0.04em" }}
+                >
+                  {p.numeral}
+                </span>
+              </div>
+
+              {/* Gradient fade from bottom — dissolves lower part of numeral into card */}
+              <div className="absolute inset-0 -z-[1] bg-gradient-to-t from-[#080B14] from-[30%] to-transparent to-[100%]" />
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
