@@ -80,7 +80,7 @@ export default function Personas() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
-              className="relative isolate w-full h-[15rem] md:h-[16rem] rounded-[1.25rem] p-6 md:p-7 border border-[#4F6BED]/20 bg-[#4F6BED]/[0.04] overflow-hidden"
+              className="relative isolate w-full h-[18rem] md:h-[20rem] rounded-[2rem] p-8 md:p-10 border border-[#4F6BED]/20 bg-[#4F6BED]/[0.04] overflow-hidden"
             >
               {/* Content — above gradient */}
               <div className="relative z-10 h-full w-full flex flex-col justify-between">
@@ -95,10 +95,10 @@ export default function Personas() {
                 </p>
               </div>
 
-              {/* Bold roman numeral — top-right, more visible */}
-              <div className="absolute -top-4 md:-top-6 right-2 md:right-4 -z-[2]">
+              {/* Bold roman numeral — vertically centred on the right, reference-style */}
+              <div className="absolute top-1/2 -translate-y-1/2 right-2 md:right-4 -z-[2]">
                 <span
-                  className="block text-[10rem] md:text-[13rem] font-bold leading-none text-[#EEF0FF]/[0.10] select-none"
+                  className="block text-[8rem] md:text-[10rem] font-bold leading-none text-[#EEF0FF]/[0.10] select-none"
                   style={{ fontFamily: "'Montserrat', sans-serif", letterSpacing: "-0.04em" }}
                 >
                   {p.numeral}
