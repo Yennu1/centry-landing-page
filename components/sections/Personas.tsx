@@ -49,7 +49,7 @@ export default function Personas() {
       className="relative w-full bg-[#080B14]"
       style={{ marginTop: "-120px", padding: "80px 24px 140px" }}
     >
-      <div className="max-w-[1100px] mx-auto">
+      <div style={{ maxWidth: "1100px", marginLeft: "auto", marginRight: "auto" }}>
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -80,12 +80,16 @@ export default function Personas() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
-              className="relative isolate w-full h-[18rem] md:h-[20rem] rounded-[2rem] p-8 md:p-10 border border-[#4F6BED]/20 bg-[#4F6BED]/[0.04] overflow-hidden"
+              className="relative isolate w-full border border-[#4F6BED]/20 bg-[#4F6BED]/[0.04] overflow-hidden"
+              style={{ height: "16rem", borderRadius: "2rem", padding: "40px" }}
             >
               {/* Content — above gradient */}
               <div className="relative z-10 h-full w-full flex flex-col justify-between">
                 {/* Tag at top-left */}
-                <div className="w-fit flex items-center gap-2 px-4 py-2 rounded-full text-[0.82rem] bg-[#4F6BED]/[0.08] border border-[#4F6BED]/25">
+                <div
+                  className="w-fit flex items-center gap-2 text-[0.82rem] bg-[#4F6BED]/[0.08] border border-[#4F6BED]/25"
+                  style={{ padding: "8px 18px", borderRadius: "999px" }}
+                >
                   <span className="text-[#7B93F5] font-medium">{p.role}</span>
                 </div>
 
@@ -96,10 +100,17 @@ export default function Personas() {
               </div>
 
               {/* Bold roman numeral — vertically centred on the right, reference-style */}
-              <div className="absolute top-1/2 -translate-y-1/2 right-2 md:right-4 -z-[2]">
+              <div
+                className="absolute -z-[2]"
+                style={{ top: "50%", right: "16px", transform: "translateY(-50%)" }}
+              >
                 <span
-                  className="block text-[8rem] md:text-[10rem] font-bold leading-none text-[#EEF0FF]/[0.10] select-none"
-                  style={{ fontFamily: "'Montserrat', sans-serif", letterSpacing: "-0.04em" }}
+                  className="block font-bold leading-none text-[#EEF0FF]/[0.10] select-none"
+                  style={{
+                    fontFamily: "'Montserrat', sans-serif",
+                    letterSpacing: "-0.04em",
+                    fontSize: "9rem",
+                  }}
                 >
                   {p.numeral}
                 </span>
