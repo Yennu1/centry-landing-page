@@ -47,7 +47,7 @@ export default function Personas() {
   return (
     <section
       className="relative w-full bg-[#080B14]"
-      style={{ marginTop: "-120px", padding: "80px 24px 140px" }}
+      style={{ marginTop: "-120px", padding: "80px 24px 140px", zIndex: 2 }}
     >
       <div style={{ maxWidth: "1100px", marginLeft: "auto", marginRight: "auto" }}>
         {/* Section header */}
