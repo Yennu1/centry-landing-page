@@ -95,14 +95,15 @@ export default function Pricing() {
         }}
       />
 
-      <div className="relative max-w-[1160px] mx-auto px-6 md:px-10">
+      <div className="relative" style={{ maxWidth: "1160px", marginLeft: "auto", marginRight: "auto", paddingLeft: "24px", paddingRight: "24px" }}>
         {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center"
+          style={{ marginBottom: "112px" }}
         >
           <p className="text-[0.7rem] font-semibold tracking-[0.42em] text-[#4F6BED] uppercase mb-4">
             Pricing
@@ -197,8 +198,8 @@ export default function Pricing() {
                 {tier.featured ? (
                   <ElectricBorder
                     color="#7B93F5"
-                    speed={0.9}
-                    chaos={0.35}
+                    speed={0.5}
+                    chaos={0.15}
                     borderRadius={16}
                     className="w-full"
                     style={{ display: "flex" }}
