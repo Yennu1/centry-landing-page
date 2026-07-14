@@ -288,6 +288,60 @@ body {
 }
 
 /* ─────────────────────────────────────────
+   TESTIMONIALS — TWO OPPOSING MARQUEE ROWS
+───────────────────────────────────────── */
+.tm-viewport {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+.tm-row {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+}
+
+.tm-track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  padding-right: 24px;
+  will-change: transform;
+}
+
+.tm-track--ltr {
+  animation: tm-scroll-ltr 46s linear infinite;
+}
+
+.tm-track--rtl {
+  animation: tm-scroll-rtl 46s linear infinite;
+}
+
+.tm-viewport:hover .tm-track {
+  animation-play-state: paused;
+}
+
+@keyframes tm-scroll-ltr {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes tm-scroll-rtl {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tm-track--ltr,
+  .tm-track--rtl {
+    animation: none;
+  }
+}
+
+/* ─────────────────────────────────────────
    ANIMATED BORDER (TESTIMONIAL CARDS)
 ───────────────────────────────────────── */
 .animated-border {
