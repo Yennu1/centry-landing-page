@@ -171,8 +171,8 @@ export default function HowItWorks() {
             How Centry works
           </h2>
           <p
-            className="text-[0.9rem] mt-4 mx-auto leading-relaxed"
-            style={{ color: "#5A6178", maxWidth: "34rem", textAlign: "center" }}
+            className="text-[0.9rem] mt-4 leading-relaxed"
+            style={{ color: "#5A6178", maxWidth: "34rem", textAlign: "center", marginLeft: "auto", marginRight: "auto" }}
           >
             From first login to full insight — five steps, one clean line from setup to signal.
           </p>
