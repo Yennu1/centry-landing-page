@@ -159,7 +159,7 @@ export default function HowItWorks() {
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.6 }}
           className="text-center"
-          style={{ marginBottom: "110px" }}
+          style={{ marginBottom: "110px", textAlign: "center" }}
         >
           <p className="text-[0.7rem] font-semibold tracking-[0.42em] text-[#4F6BED] uppercase mb-4">
             The flow
@@ -172,7 +172,7 @@ export default function HowItWorks() {
           </h2>
           <p
             className="text-[0.9rem] mt-4 mx-auto leading-relaxed"
-            style={{ color: "#5A6178", maxWidth: "34rem" }}
+            style={{ color: "#5A6178", maxWidth: "34rem", textAlign: "center" }}
           >
             From first login to full insight — five steps, one clean line from setup to signal.
           </p>
