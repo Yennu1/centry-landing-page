@@ -35,15 +35,15 @@ const STEPS = [
 function TileSignup() {
   return (
     <div className="w-full h-full flex flex-col justify-center" style={{ padding: "28px", gap: "12px" }}>
-      <div style={{ height: "9px", width: "72%", borderRadius: "999px", background: "rgba(148,158,190,0.22)" }} />
-      <div style={{ height: "9px", width: "54%", borderRadius: "999px", background: "rgba(148,158,190,0.22)" }} />
+      <div style={{ height: "9px", width: "72%", borderRadius: "999px", background: "rgba(75,86,120,0.20)" }} />
+      <div style={{ height: "9px", width: "54%", borderRadius: "999px", background: "rgba(75,86,120,0.20)" }} />
       <div
         style={{
           height: "16px",
           width: "44%",
           borderRadius: "999px",
           background: "linear-gradient(90deg, #4F6BED, #7B93F5)",
-          boxShadow: "0 0 22px rgba(79,107,237,0.75)",
+          boxShadow: "0 0 22px rgba(79,107,237,0.55)",
           marginTop: "4px",
         }}
       />
@@ -56,8 +56,8 @@ function TileMembers() {
     <div className="w-full h-full flex flex-col justify-center" style={{ padding: "28px", gap: "14px" }}>
       {["74%", "62%", "68%"].map((w, i) => (
         <div key={i} className="flex items-center" style={{ gap: "12px" }}>
-          <div style={{ width: "9px", height: "9px", borderRadius: "999px", background: "rgba(123,147,245,0.75)" }} />
-          <div style={{ height: "8px", width: w, borderRadius: "999px", background: "rgba(148,158,190,0.22)" }} />
+          <div style={{ width: "9px", height: "9px", borderRadius: "999px", background: "rgba(79,107,237,0.85)" }} />
+          <div style={{ height: "8px", width: w, borderRadius: "999px", background: "rgba(75,86,120,0.20)" }} />
         </div>
       ))}
     </div>
@@ -68,14 +68,13 @@ function TileOfferings() {
   return (
     <div className="w-full h-full flex flex-col items-center justify-center" style={{ gap: "8px" }}>
       <span
-        className="font-semibold text-[#7B93F5]"
+        className="font-semibold text-[#4F6BED]"
         style={{ fontSize: "0.68rem", letterSpacing: "0.28em" }}
       >
         GH&#8373;
       </span>
       <span
-        className="text-[#EEF0FF]"
-        style={{ fontFamily: "'Instrument Serif', serif", fontSize: "2.1rem", lineHeight: 1 }}
+        style={{ fontFamily: "'Instrument Serif', serif", fontSize: "2.1rem", lineHeight: 1, color: "#0D1120" }}
       >
         1,250
       </span>
@@ -94,17 +93,18 @@ function TileExport() {
             width: "58px",
             height: "68px",
             borderRadius: "10px",
-            border: "1px solid rgba(148,158,190,0.25)",
-            background: "rgba(13,18,38,0.85)",
+            border: "1px solid rgba(79,107,237,0.25)",
+            background: "#FFFFFF",
+            boxShadow: "0 1px 4px rgba(13,17,32,0.05)",
             padding: "10px 10px 8px",
           }}
         >
           <div className="w-full flex flex-col" style={{ gap: "4px" }}>
-            <div style={{ height: "3px", width: "100%", borderRadius: "999px", background: "rgba(148,158,190,0.3)" }} />
-            <div style={{ height: "3px", width: "72%", borderRadius: "999px", background: "rgba(148,158,190,0.3)" }} />
-            <div style={{ height: "3px", width: "85%", borderRadius: "999px", background: "rgba(148,158,190,0.3)" }} />
+            <div style={{ height: "3px", width: "100%", borderRadius: "999px", background: "rgba(75,86,120,0.28)" }} />
+            <div style={{ height: "3px", width: "72%", borderRadius: "999px", background: "rgba(75,86,120,0.28)" }} />
+            <div style={{ height: "3px", width: "85%", borderRadius: "999px", background: "rgba(75,86,120,0.28)" }} />
           </div>
-          <span className="font-semibold text-[#AAB2CF]" style={{ fontSize: "0.58rem", letterSpacing: "0.08em" }}>
+          <span className="font-semibold" style={{ fontSize: "0.58rem", letterSpacing: "0.08em", color: "#4F6BED" }}>
             {label}
           </span>
         </div>
@@ -139,15 +139,15 @@ const TILES = [TileSignup, TileMembers, TileOfferings, TileExport, TileReports];
 
 export default function HowItWorks() {
   return (
-    <section className="relative w-full bg-[#080B14] overflow-hidden" style={{ padding: "140px 24px" }}>
-      {/* Ambient bloom */}
+    <section className="relative w-full overflow-hidden" style={{ background: "#FFFFFF", padding: "56px 24px 140px" }}>
+      {/* Ambient bloom — light blue haze, subtle on white */}
       <motion.div
         aria-hidden
-        animate={{ opacity: [0.2, 0.4, 0.2], scale: [1, 1.06, 1] }}
+        animate={{ opacity: [0.35, 0.6, 0.35], scale: [1, 1.06, 1] }}
         transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
         className="pointer-events-none absolute top-1/3 -right-56 h-[36rem] w-[36rem] rounded-full"
         style={{
-          background: "radial-gradient(circle, rgba(27,35,82,0.5), transparent 68%)",
+          background: "radial-gradient(circle, rgba(79,107,237,0.10), transparent 68%)",
         }}
       />
 
@@ -165,12 +165,15 @@ export default function HowItWorks() {
             The flow
           </p>
           <h2
-            className="text-[2rem] md:text-[2.75rem] leading-[1.12] text-[#EEF0FF]"
-            style={{ fontFamily: "'Instrument Serif', serif", fontWeight: 400 }}
+            className="text-[2rem] md:text-[2.75rem] leading-[1.12]"
+            style={{ fontFamily: "'Instrument Serif', serif", fontWeight: 400, color: "#0D1120" }}
           >
             How Centry works
           </h2>
-          <p className="text-[0.9rem] text-[#6B7499] mt-4 max-w-md mx-auto leading-relaxed">
+          <p
+            className="text-[0.9rem] mt-4 mx-auto leading-relaxed"
+            style={{ color: "#5A6178", maxWidth: "34rem" }}
+          >
             From first login to full insight — five steps, one clean line from setup to signal.
           </p>
         </motion.div>
@@ -214,9 +217,10 @@ export default function HowItWorks() {
                     style={{
                       height: "170px",
                       borderRadius: "22px",
-                      border: "1px solid rgba(79,107,237,0.20)",
-                      background: "linear-gradient(180deg, rgba(13,17,32,0.9), rgba(8,11,20,0.7))",
+                      border: "1px solid rgba(79,107,237,0.22)",
+                      background: "linear-gradient(180deg, #FFFFFF, #F4F6FB)",
                       overflow: "hidden",
+                      boxShadow: "0 2px 12px rgba(79,107,237,0.05)",
                       transition:
                         "transform 0.35s cubic-bezier(0.22,1,0.36,1), border-color 0.35s ease, box-shadow 0.35s ease, background 0.35s ease",
                       willChange: "transform",
@@ -224,16 +228,16 @@ export default function HowItWorks() {
                     onMouseEnter={(e) => {
                       const el = e.currentTarget;
                       el.style.transform = "translateY(-5px) scale(1.02)";
-                      el.style.borderColor = "rgba(123,147,245,0.55)";
-                      el.style.boxShadow = "0 18px 48px -18px rgba(79,107,237,0.45)";
-                      el.style.background = "linear-gradient(180deg, rgba(16,21,40,0.95), rgba(10,14,26,0.85))";
+                      el.style.borderColor = "rgba(79,107,237,0.55)";
+                      el.style.boxShadow = "0 18px 40px -18px rgba(79,107,237,0.35)";
+                      el.style.background = "linear-gradient(180deg, #FFFFFF, #EEF1FB)";
                     }}
                     onMouseLeave={(e) => {
                       const el = e.currentTarget;
                       el.style.transform = "translateY(0) scale(1)";
-                      el.style.borderColor = "rgba(79,107,237,0.20)";
-                      el.style.boxShadow = "none";
-                      el.style.background = "linear-gradient(180deg, rgba(13,17,32,0.9), rgba(8,11,20,0.7))";
+                      el.style.borderColor = "rgba(79,107,237,0.22)";
+                      el.style.boxShadow = "0 2px 12px rgba(79,107,237,0.05)";
+                      el.style.background = "linear-gradient(180deg, #FFFFFF, #F4F6FB)";
                     }}
                   >
                     <Tile />
@@ -248,14 +252,13 @@ export default function HowItWorks() {
                       STEP {step.numeral}
                     </p>
                     <h3
-                      className="font-semibold text-[#EEF0FF]"
-                      style={{ fontFamily: "'Montserrat', sans-serif", fontSize: "1.08rem", marginTop: "12px" }}
+                      className="font-semibold"
+                      style={{ fontFamily: "'Montserrat', sans-serif", fontSize: "1.08rem", marginTop: "12px", color: "#0D1120" }}
                     >
                       {step.title}
                     </h3>
                     <p
-                      className="text-[#8B92B0]"
-                      style={{ fontSize: "0.84rem", lineHeight: 1.7, maxWidth: "230px", margin: "10px auto 0" }}
+                      style={{ fontSize: "0.84rem", lineHeight: 1.7, maxWidth: "230px", margin: "10px auto 0", color: "#5A6178" }}
                     >
                       {step.description}
                     </p>

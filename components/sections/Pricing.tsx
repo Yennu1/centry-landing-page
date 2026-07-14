@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Check, ArrowRight } from "lucide-react";
+import ElectricBorder from "@/components/ui/ElectricBorder";
 
 const TIERS = [
   {
@@ -35,7 +36,7 @@ const TIERS = [
       "Email support",
     ],
     cta: "Get Growth",
-    featured: false,
+    featured: true,
   },
   {
     name: "Pro",
@@ -51,7 +52,7 @@ const TIERS = [
       "Priority support",
     ],
     cta: "Get Pro",
-    featured: true,
+    featured: false,
   },
   {
     name: "Enterprise",
@@ -116,57 +117,59 @@ export default function Pricing() {
 
         {/* Tier cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch">
-          {TIERS.map((tier, i) => (
-            <motion.div
-              key={tier.name}
-              custom={i}
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.25 }}
-              className={`relative flex flex-col rounded-2xl p-7 backdrop-blur-xl transition-colors duration-300 ${
-                tier.featured
-                  ? "border border-[#4F6BED]/50 bg-[#4F6BED]/[0.07] shadow-[0_0_60px_rgba(79,107,237,0.22),inset_0_1px_0_rgba(255,255,255,0.06)]"
-                  : "border border-white/[0.08] bg-white/[0.03] shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_16px_48px_rgba(0,0,0,0.45)] hover:border-white/[0.16]"
-              }`}
-            >
-              {tier.featured && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[#4F6BED] px-3 py-1 text-[0.62rem] font-semibold tracking-[0.18em] text-white uppercase">
-                  Most popular
-                </span>
-              )}
-
-              <h3
-                className="text-[0.95rem] font-semibold text-[#EEF0FF] mb-4"
-                style={{ fontFamily: "'Montserrat', sans-serif" }}
+          {TIERS.map((tier, i) => {
+            const cardInner = (
+              <div
+                className={`relative flex flex-col h-full rounded-2xl backdrop-blur-xl transition-colors duration-300 ${
+                  tier.featured
+                    ? "border border-[#4F6BED]/50 bg-[#4F6BED]/[0.07] shadow-[0_0_60px_rgba(79,107,237,0.22),inset_0_1px_0_rgba(255,255,255,0.06)]"
+                    : "border border-white/[0.08] bg-white/[0.03] shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_16px_48px_rgba(0,0,0,0.45)] hover:border-white/[0.16]"
+                }`}
+                style={{ padding: "28px" }}
               >
-                {tier.name}
-              </h3>
+                {tier.featured && (
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[#4F6BED] px-3 py-1 text-[0.62rem] font-semibold tracking-[0.18em] text-white uppercase whitespace-nowrap z-[3]">
+                    Most popular
+                  </span>
+                )}
 
-              <div className="mb-2 flex items-baseline gap-2">
-                <span
-                  className="text-[2.1rem] leading-none text-[#EEF0FF]"
-                  style={{ fontFamily: "'Instrument Serif', serif" }}
+                {/* Header: name + price + tagline pinned to fixed heights so all cards align */}
+                <div style={{ height: "44px" }}>
+                  <h3
+                    className="text-[0.95rem] font-semibold text-[#EEF0FF]"
+                    style={{ fontFamily: "'Montserrat', sans-serif" }}
+                  >
+                    {tier.name}
+                  </h3>
+                </div>
+
+                <div className="flex items-baseline gap-2" style={{ height: "48px" }}>
+                  <span
+                    className="text-[2.1rem] leading-none text-[#EEF0FF]"
+                    style={{ fontFamily: "'Instrument Serif', serif" }}
+                  >
+                    {tier.price}
+                  </span>
+                  <span className="text-[0.72rem] text-[#6B7499]">{tier.period}</span>
+                </div>
+
+                <p
+                  className="text-[0.78rem] leading-[1.55] text-[#8B92B0]"
+                  style={{ height: "56px", marginTop: "6px", marginBottom: "24px" }}
                 >
-                  {tier.price}
-                </span>
-                <span className="text-[0.72rem] text-[#6B7499]">{tier.period}</span>
-              </div>
+                  {tier.tagline}
+                </p>
 
-              <p className="text-[0.78rem] leading-[1.6] text-[#8B92B0] mb-7 min-h-[2.6rem]">
-                {tier.tagline}
-              </p>
+                {/* Feature list flex-grows to fill space so button pins to bottom */}
+                <ul className="flex flex-col flex-1" style={{ gap: "12px", marginBottom: "24px" }}>
+                  {tier.features.map((f) => (
+                    <li key={f} className="flex items-start gap-2.5">
+                      <Check className="mt-[2px] size-3.5 shrink-0 text-[#7B93F5]" strokeWidth={2.5} />
+                      <span className="text-[0.8rem] leading-snug text-[#9CA3C4]">{f}</span>
+                    </li>
+                  ))}
+                </ul>
 
-              <ul className="flex flex-col gap-3 mb-8">
-                {tier.features.map((f) => (
-                  <li key={f} className="flex items-start gap-2.5">
-                    <Check className="mt-[2px] size-3.5 shrink-0 text-[#7B93F5]" strokeWidth={2.5} />
-                    <span className="text-[0.8rem] leading-snug text-[#9CA3C4]">{f}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="mt-auto">
                 <Link
                   href="#contact"
                   className={`inline-flex w-full items-center justify-center gap-2 rounded-lg py-2.5 text-[0.82rem] font-semibold transition-colors duration-200 ${
@@ -179,8 +182,35 @@ export default function Pricing() {
                   <ArrowRight className="size-3.5" strokeWidth={2} />
                 </Link>
               </div>
-            </motion.div>
-          ))}
+            );
+
+            return (
+              <motion.div
+                key={tier.name}
+                custom={i}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.25 }}
+                className="relative flex"
+              >
+                {tier.featured ? (
+                  <ElectricBorder
+                    color="#7B93F5"
+                    speed={0.9}
+                    chaos={0.35}
+                    borderRadius={16}
+                    className="w-full"
+                    style={{ display: "flex" }}
+                  >
+                    {cardInner}
+                  </ElectricBorder>
+                ) : (
+                  <div className="w-full flex">{cardInner}</div>
+                )}
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
