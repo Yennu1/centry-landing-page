@@ -117,7 +117,7 @@ export default function Testimonials() {
   const bottomRow = TESTIMONIALS.slice(3, 6);
 
   return (
-    <section id="testimonials" className="relative w-full bg-[#080B14] overflow-hidden" style={{ padding: "140px 0" }}>
+    <section id="testimonials" className="relative w-full bg-[#080B14] overflow-hidden" style={{ padding: "64px 0 140px" }}>
       {/* Heading */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
