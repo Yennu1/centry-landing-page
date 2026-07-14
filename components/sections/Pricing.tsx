@@ -128,12 +128,6 @@ export default function Pricing() {
                 }`}
                 style={{ padding: "28px" }}
               >
-                {tier.featured && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[#4F6BED] px-3 py-1 text-[0.62rem] font-semibold tracking-[0.18em] text-white uppercase whitespace-nowrap z-[3]">
-                    Most popular
-                  </span>
-                )}
-
                 {/* Header: name + price + tagline pinned to fixed heights so all cards align */}
                 <div style={{ height: "44px" }}>
                   <h3
