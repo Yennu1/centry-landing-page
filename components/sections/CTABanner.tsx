@@ -7,7 +7,7 @@ import { ArrowUpRight } from "lucide-react";
 export default function CTABanner() {
   return (
     <section className="relative w-full bg-[#080B14]" style={{ padding: "100px 24px 140px" }}>
-      <div className="max-w-[900px] mx-auto px-6">
+      <div style={{ maxWidth: "900px", marginLeft: "auto", marginRight: "auto", paddingLeft: "24px", paddingRight: "24px" }}>
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
