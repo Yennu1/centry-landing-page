@@ -101,14 +101,14 @@ export default function Navbar() {
             {/* CTAs — right, compact */}
             <div className="flex items-center shrink-0" style={{ gap: "8px", marginLeft: "auto" }}>
               <Link
-                href="#features"
+                href="https://app.centrycms.com"
                 className="text-[#C7CCE8] hover:text-[#EEF0FF] transition-colors duration-200"
                 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: "0.8rem", fontWeight: 500, padding: "6px 12px" }}
               >
                 Sign In
               </Link>
               <Link
-                href="#contact"
+                href="https://app.centrycms.com"
                 className="text-white transition-colors duration-200"
                 style={{
                   fontFamily: "'Montserrat', sans-serif",

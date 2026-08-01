@@ -166,7 +166,7 @@ export default function Pricing() {
                 </ul>
 
                 <Link
-                  href="#contact"
+                  href="https://app.centrycms.com"
                   className={`inline-flex w-full items-center justify-center gap-2 rounded-lg py-2.5 text-[0.82rem] font-semibold transition-colors duration-200 ${
                     tier.featured
                       ? "bg-[#4F6BED] text-white hover:bg-[#4059c9]"

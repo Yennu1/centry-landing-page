@@ -49,7 +49,7 @@ export default function Hero() {
             animate="visible"
             style={{ marginTop: "48px" }}
           >
-            <Link href="#features" className="btn-primary text-sm px-8 py-3">
+            <Link href="https://app.centrycms.com" className="btn-primary text-sm px-8 py-3">
               Get Started
               <ArrowRight className="size-4" strokeWidth={2} />
             </Link>
