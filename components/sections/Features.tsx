@@ -14,7 +14,7 @@ const featureContent = [
           src="/images/screenshots/feature-members.png"
           alt="Member Management"
           fill
-          className="object-cover object-top rounded-xl"
+          className="object-contain rounded-xl"
           sizes="560px"
         />
       </div>
@@ -30,7 +30,7 @@ const featureContent = [
           src="/images/screenshots/feature-transactions.png"
           alt="Transaction Records"
           fill
-          className="object-cover object-top rounded-xl"
+          className="object-contain rounded-xl"
           sizes="560px"
         />
       </div>
@@ -46,7 +46,7 @@ const featureContent = [
           src="/images/screenshots/feature-donations.png"
           alt="Donations and Giving"
           fill
-          className="object-cover object-top rounded-xl"
+          className="object-contain rounded-xl"
           sizes="560px"
         />
       </div>
@@ -62,7 +62,7 @@ const featureContent = [
           src="/images/screenshots/feature-pledges.png"
           alt="Pledge Tracking"
           fill
-          className="object-cover object-top rounded-xl"
+          className="object-contain rounded-xl"
           sizes="560px"
         />
       </div>
@@ -78,7 +78,7 @@ const featureContent = [
           src="/images/screenshots/feature-events.png"
           alt="Events and Services"
           fill
-          className="object-cover object-top rounded-xl"
+          className="object-contain rounded-xl"
           sizes="560px"
         />
       </div>
@@ -94,7 +94,7 @@ const featureContent = [
           src="/images/screenshots/feature-multitenant.png"
           alt="Secure Multi-Tenant"
           fill
-          className="object-cover object-top rounded-xl"
+          className="object-contain rounded-xl"
           sizes="560px"
         />
       </div>

@@ -68,18 +68,16 @@ export const StickyScroll = ({
         <motion.div
           animate={{ backgroundColor: backgroundColors[activeCard] }}
           transition={{ duration: 0.6, ease: "easeInOut" }}
-          className="relative w-full max-w-[840px] mx-6 rounded-3xl border border-white/[0.08] shadow-[0_32px_80px_rgba(0,0,0,0.6)] overflow-hidden"
-          style={{ height: "460px" }}
+          className="relative w-full max-w-[840px] mx-6 rounded-3xl border border-white/[0.08] shadow-[0_32px_80px_rgba(0,0,0,0.6)] overflow-hidden h-auto md:h-[460px] max-h-[92vh] md:max-h-none overflow-y-auto md:overflow-y-visible"
         >
-          <div className="flex h-full">
+          <div className="flex flex-col md:flex-row md:h-full">
 
             {/* LEFT — text, 32px inner breathing space from divider */}
             <div
-              className="flex flex-col justify-center w-[44%] shrink-0 border-r border-white/[0.06]"
-              style={{ padding: "36px 24px 36px 40px" }}
+              className="flex flex-col justify-center w-full md:w-[38%] shrink-0 border-b md:border-b-0 md:border-r border-white/[0.06] p-6 md:pt-9 md:pr-6 md:pb-9 md:pl-10"
             >
               {/* Dot indicators — no 01/06 counter */}
-              <div className="flex gap-1.5" style={{ marginBottom: "28px", marginTop: "20px" }}>
+              <div className="flex gap-1.5 mb-5 mt-1 md:mb-7 md:mt-5">
                 {content.map((_, i) => (
                   <motion.div
                     key={i}
@@ -102,8 +100,8 @@ export const StickyScroll = ({
                   transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
                 >
                   <h3
-                    className="text-[1.1rem] md:text-[1.25rem] font-semibold text-[#EEF0FF] leading-[1.2]"
-                    style={{ fontFamily: "'Montserrat', sans-serif", marginBottom: "40px" }}
+                    className="text-[1.1rem] md:text-[1.25rem] font-semibold text-[#EEF0FF] leading-[1.2] mb-5 md:mb-10"
+                    style={{ fontFamily: "'Montserrat', sans-serif" }}
                   >
                     {content[activeCard].title}
                   </h3>
@@ -116,8 +114,7 @@ export const StickyScroll = ({
 
             {/* RIGHT — screenshot, fully clipped inside rounded panel */}
             <div
-              className="flex-1 overflow-hidden flex items-center justify-center"
-              style={{ padding: "14px" }}
+              className="w-full aspect-[4/3] md:aspect-auto md:flex-1 md:h-full overflow-hidden flex items-center justify-center p-3.5"
             >
               <AnimatePresence mode="wait">
                 <motion.div
