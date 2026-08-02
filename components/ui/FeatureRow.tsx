@@ -56,35 +56,43 @@ export default function FeatureRow({
         </p>
       </motion.div>
 
+      {/* SCREENSHOT — own aspect ratio always, but height-capped on desktop so
+          every row occupies roughly the same vertical footprint. Without this,
+          a 1.6-ratio screenshot next to a 1.2-ratio one made rows wobble
+          wildly in height down the page — that's the "disorganized" feel. */}
       <motion.div
         initial={{ opacity: 0, x: imageFromX }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.7, ease: easeOut, delay: 0.08 }}
-        className="w-full md:flex-1 group relative"
+        className="w-full md:flex-1 flex md:items-center md:justify-center"
       >
-        <div
-          className="absolute -inset-6 rounded-[28px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 70% 70% at 50% 50%, rgba(79,107,237,0.35) 0%, transparent 70%)",
-            filter: "blur(24px)",
-          }}
-        />
-        <motion.div
-          whileHover={{ scale: 1.015 }}
-          transition={{ duration: 0.4, ease: easeOut }}
-          className="relative rounded-2xl overflow-hidden border border-white/[0.08] shadow-[0_24px_60px_rgba(0,0,0,0.45)]"
-        >
-          <Image
-            src={image}
-            alt={alt}
-            width={width}
-            height={height}
-            className="w-full h-auto block"
-            sizes="(min-width: 768px) 60vw, 100vw"
+        <div className="relative group inline-block max-w-full">
+          {/* Glow layer — echoes the Hero bloom, brightens on hover. Sized to
+              the card itself now, not the whole column, so it hugs correctly. */}
+          <div
+            className="absolute -inset-6 rounded-[28px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(ellipse 70% 70% at 50% 50%, rgba(79,107,237,0.35) 0%, transparent 70%)",
+              filter: "blur(24px)",
+            }}
           />
-        </motion.div>
+          <motion.div
+            whileHover={{ scale: 1.015 }}
+            transition={{ duration: 0.4, ease: easeOut }}
+            className="relative rounded-2xl overflow-hidden border border-white/[0.08] shadow-[0_24px_60px_rgba(0,0,0,0.45)]"
+          >
+            <Image
+              src={image}
+              alt={alt}
+              width={width}
+              height={height}
+              className="w-full h-auto md:w-auto md:h-[400px] max-w-full block"
+              sizes="(min-width: 768px) 640px, 100vw"
+            />
+          </motion.div>
+        </div>
       </motion.div>
     </div>
   );

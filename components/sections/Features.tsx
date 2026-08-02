@@ -69,8 +69,8 @@ export default function Features() {
   return (
     <section id="features" className="w-full bg-[#080B14] relative z-10">
       <div
-        className="flex flex-col items-center text-center px-6"
-        style={{ paddingTop: "100px", marginTop: "-200px", paddingBottom: "100px" }}
+        className="flex flex-col items-center text-center px-6 pb-24 md:pb-36"
+        style={{ paddingTop: "100px", marginTop: "-200px" }}
       >
         <p className="text-[0.7rem] font-semibold tracking-[0.42em] text-[#4F6BED] uppercase mb-4">
           Features
