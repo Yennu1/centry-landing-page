@@ -14,9 +14,7 @@ export default function Home() {
     <>
       <Navbar />
       <main className="relative bg-[#080B14]">
-        <div className="max-w-[1440px] mx-auto">
-          <Hero />
-        </div>
+        <Hero />
         <Features />
         <Personas />
         <HowItWorks />
