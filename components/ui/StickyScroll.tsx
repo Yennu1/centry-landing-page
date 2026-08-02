@@ -64,7 +64,7 @@ export const StickyScroll = ({
       className="relative w-full"
     >
       {/* Sticky wrapper — fills the viewport and PINS until section ends */}
-      <div className="sticky top-0 h-screen w-full flex items-center justify-center">
+      <div className="sticky top-0 h-screen w-full flex items-start md:items-center justify-center pt-16 md:pt-0">
         <motion.div
           animate={{ backgroundColor: backgroundColors[activeCard] }}
           transition={{ duration: 0.6, ease: "easeInOut" }}
