@@ -68,7 +68,7 @@ export const StickyScroll = ({
         <motion.div
           animate={{ backgroundColor: backgroundColors[activeCard] }}
           transition={{ duration: 0.6, ease: "easeInOut" }}
-          className="relative w-full max-w-[840px] mx-6 rounded-3xl border border-white/[0.08] shadow-[0_32px_80px_rgba(0,0,0,0.6)] overflow-hidden h-auto md:h-[460px] max-h-[92vh] md:max-h-none overflow-y-auto md:overflow-y-visible"
+          className="relative w-full max-w-[1200px] mx-3 md:mx-6 rounded-3xl border border-white/[0.08] shadow-[0_32px_80px_rgba(0,0,0,0.6)] overflow-hidden h-auto md:h-[560px] max-h-[92vh] md:max-h-none overflow-y-auto md:overflow-y-visible"
         >
           <div className="flex flex-col md:flex-row md:h-full">
 
